@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8000:8000
+
+  botdb:
+    image: postgres:16.3-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: botdb
+      POSTGRES_USER: botdb_user
+      POSTGRES_PASSWORD: botdb_password
+    ports:
+      - 5434:5434
