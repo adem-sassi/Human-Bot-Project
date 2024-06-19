@@ -17,12 +17,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger: Operations on ALL_WORKERS_ELAPSED
 CREATE TRIGGER trg_all_workers_elapsed
 INSTEAD OF INSERT OR UPDATE OR DELETE ON ALL_WORKERS_ELAPSED
 FOR EACH ROW EXECUTE FUNCTION handle_insert_all_workers_elapsed();
 
--- Trigger Function: Record Robot Addition in Audit
 CREATE OR REPLACE FUNCTION record_robot_addition()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -32,27 +30,22 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger: New Robot Addition
 CREATE TRIGGER trg_robot_addition
 AFTER INSERT ON robots
 FOR EACH ROW EXECUTE FUNCTION record_robot_addition();
 
--- Trigger Function: Validate Factories and Tables
 CREATE OR REPLACE FUNCTION validate_factory_and_tables()
 RETURNS TRIGGER AS $$
 DECLARE
     factory_count INTEGER;
     table_count INTEGER;
 BEGIN
-    -- Count the number of factories
     SELECT COUNT(*) INTO factory_count FROM factories;
 
-    -- Count the number of tables matching the format WORKERS_FACTORY_<N>
     SELECT COUNT(*) INTO table_count
     FROM pg_tables
     WHERE schemaname = 'public' AND tablename LIKE 'workers_factory_%';
 
-    -- Check if the numbers match
     IF factory_count <> table_count THEN
         RAISE EXCEPTION 'Modification is not allowed as the number of factories (%) does not match the number of tables (WORKERS_FACTORY_<N>) (%).', factory_count, table_count;
     END IF;
@@ -61,7 +54,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger: Prevent Modifications in ROBOTS_FACTORIES
 CREATE TRIGGER trg_robots_factories
 INSTEAD OF INSERT OR UPDATE OR DELETE ON ROBOTS_FACTORIES
 FOR EACH ROW EXECUTE FUNCTION validate_factory_and_tables();

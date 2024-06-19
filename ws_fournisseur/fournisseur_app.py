@@ -8,7 +8,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-# Define the deliveries model
 class Delivery(db.Model):
     __tablename__ = 'deliveries'
     delivery_id = db.Column(db.Integer, primary_key=True)
@@ -18,16 +17,12 @@ class Delivery(db.Model):
     received_by = db.Column(db.Integer, db.ForeignKey('employees.employee_id'))
     factory_id = db.Column(db.Integer, db.ForeignKey('factories.factory_id'))
 
-# Route to display deliveries from the last 10 days
 @app.route("/")
 def show_deliveries():
-    # Calculate the date 10 days ago from today
     ten_days_ago = datetime.now() - timedelta(days=10)
     
-    # Query deliveries from the last 10 days
     recent_deliveries = Delivery.query.filter(Delivery.delivery_date >= ten_days_ago).order_by(Delivery.delivery_date.desc()).all()
     
-    # Construct HTML response
     html_content = '''
     <!DOCTYPE html>
     <html lang="en">
