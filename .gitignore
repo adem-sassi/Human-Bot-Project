@@ -1,4 +1,5 @@
 # Virtual environment
+.venv_api
 .venv_fournisseur/
 .venv_stock/
 .venv_rh/
@@ -12,7 +13,6 @@ __pycache__/
 .idea/
 
 # Dependency management files
-requirements.txt
 Pipfile.lock
 
 # Configuration files (adjust as necessary)
