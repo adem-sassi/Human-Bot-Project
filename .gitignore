@@ -1,5 +1,7 @@
 # Virtual environment
-.venv/
+.venv_fournisseur/
+.venv_stock/
+.venv_rh/
 
 # Compiled Python files
 *.pyc
