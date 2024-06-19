@@ -85,6 +85,8 @@ No security features are required at this stage. User authentication and authori
 
 ### Frontend
 
+**command** flask --app .\hb_app.py run
+
 - **HTML/CSS**: Basic styling and layout for web interfaces.
 - **JavaScript**: Enhancing interactivity and dynamic content loading.
 
