@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Deliveries</title>
+    <style>
+        table {
+            text-align: center;
+            width: 100%;
+            border-collapse: collapse; 
+            border: 1px solid;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to the Human-Bot Project</h1>
+        <h2>Supplier Service</h2>
+        <h3>Delivery Last 10 Days</h3>
+        <table>
+            <tr>
+                <th>Delivery ID</th>
+                <th>Supplier Name</th>
+                <th>Delivery Date</th>
+                <th>Quantity</th>
+                <th>Employee</th>
+                <th>Factory Name</th>
+            </tr>
+            {% for delivery in deliveries %}
+                <tr>
+                    <td>{{ delivery.delivery_id }}</td>
+                    <td>{{ delivery.supplier_name }}</td>
+                    <td>{{ delivery.delivery_date }}</td>
+                    <td>{{ delivery.quantity }}</td>
+                    <td>{{ delivery.employee_name }}</td>
+                    <td>{{ delivery.factory_name }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
