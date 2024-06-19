@@ -12,7 +12,6 @@ __pycache__/
 .idea/
 
 # Dependency management files
-requirements.txt
 Pipfile.lock
 
 # Configuration files (adjust as necessary)
