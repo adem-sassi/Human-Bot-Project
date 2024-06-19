@@ -1,4 +1,5 @@
 # Virtual environment
+.venv_api
 .venv_fournisseur/
 .venv_stock/
 .venv_rh/
