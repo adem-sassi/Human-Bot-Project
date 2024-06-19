@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Information</title>
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Stock Information by Factory</h1>
+    <table>
+        <tr>
+            <th>Factory ID</th>
+            <th>Remaining Stock</th>
+        </tr>
+        {% for factory_id, stock_quantity in stock_data.items() %}
+        <tr>
+            <td>{{ factory_id }}</td>
+            <td>{{ stock_quantity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
