@@ -1,35 +1,65 @@
+-- Functions
 
-
-
--- Fonction GET_NB_WORKERS
-CREATE FUNCTION GET_NB_WORKERS(FACTORY_ID INTEGER) RETURNS INTEGER AS $$
+-- 1. GET_NB_WORKERS
+CREATE OR REPLACE FUNCTION GET_NB_WORKERS
+(FACTORY_ID INTEGER)
+RETURNS INTEGER AS $$
+DECLARE
+    NUM_WORKERS INTEGER;
 BEGIN
-    RETURN (SELECT COUNT(*)
+    SELECT COUNT(*)
+    INTO NUM_WORKERS
     FROM employees
-    WHERE factory_id = FACTORY_ID AND is_active = TRUE);
+    WHERE employees.factory_id = GET_NB_WORKERS.FACTORY_ID AND employees.is_active = TRUE;
+
+    RETURN NUM_WORKERS;
 END;
 $$ LANGUAGE plpgsql;
 
--- Fonction GET_NB_BIG_ROBOTS
-CREATE FUNCTION GET_NB_BIG_ROBOTS() RETURNS INTEGER AS $$
+
+
+-- 2. GET_NB_BIG_ROBOTS
+CREATE OR REPLACE FUNCTION GET_NB_BIG_ROBOTS
+()
+RETURNS INTEGER AS $$
+DECLARE
+    NUM_BIG_ROBOTS INTEGER;
 BEGIN
-    RETURN (SELECT COUNT(*)
+    SELECT COUNT(*)
+    INTO NUM_BIG_ROBOTS
     FROM robots
-    WHERE parts_used > 3);
+    WHERE robots.parts_used > 3;
+
+    RETURN NUM_BIG_ROBOTS;
 END;
 $$ LANGUAGE plpgsql;
 
--- Fonction GET_BEST_SUPPLIER
-CREATE FUNCTION GET_BEST_SUPPLIER() RETURNS VARCHAR(100) AS $$
+
+CREATE OR REPLACE FUNCTION GET_BEST_SUPPLIER
+()
+RETURNS VARCHAR
+(100) AS $$
+DECLARE
+    BEST_SUPPLIER_NAME VARCHAR
+(100);
 BEGIN
-    RETURN (SELECT supplier_name
-    FROM BEST_SUPPLIERS LIMIT
-    1);
+    SELECT supplier_name
+    INTO BEST_SUPPLIER_NAME
+    FROM BEST_SUPPLIERS
+    ORDER BY supplier_name -- Example: Order by supplier_name for simplicity
+    LIMIT 1;
+
+    RETURN BEST_SUPPLIER_NAME;
 END;
 $$ LANGUAGE plpgsql;
 
--- Procédure SEED_DATA_WORKERS
-CREATE PROCEDURE SEED_DATA_WORKERS(NB_WORKERS INTEGER, FACTORY_ID INTEGER) LANGUAGE plpgsql AS $$
+
+-- Procedures
+
+-- 1. SEED_DATA_WORKERS
+CREATE OR REPLACE PROCEDURE SEED_DATA_WORKERS
+(NB_WORKERS INTEGER, FACTORY_ID INTEGER)
+LANGUAGE plpgsql AS $$
 DECLARE
     i INTEGER;
 BEGIN
@@ -37,19 +67,24 @@ BEGIN
     INSERT INTO employees
         (firstname, lastname, start_date, is_active, factory_id)
     VALUES
-        ('worker_f_' || i, 'worker_l_' || i, (DATE
+        ('worker_f_' || i, 'worker_l_' || i,
+            (DATE
     '2065-01-01' +
     (random
     () *
-    (DATE '2070-01-01' - DATE '2065-01-01'))::integer), TRUE, FACTORY_ID);
+    (DATE '2070-01-01' - DATE '2065-01-01'))::integer),
+                TRUE, FACTORY_ID);
 END
 LOOP;
 END;
 $$;
 
--- Procédure ADD_NEW_ROBOT
-CREATE PROCEDURE ADD_NEW_ROBOT(MODEL_NAME VARCHAR
-(50)) LANGUAGE plpgsql AS $$
+
+-- 2. ADD_NEW_ROBOT
+CREATE OR REPLACE PROCEDURE ADD_NEW_ROBOT
+(MODEL_NAME VARCHAR
+(50))
+LANGUAGE plpgsql AS $$
 BEGIN
     INSERT INTO robots
         (robot_model, produced_quantity, parts_used, factory_id)
