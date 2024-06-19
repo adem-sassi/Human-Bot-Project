@@ -28,7 +28,7 @@ def stock():
     <div id="container">
     <h1>Welcome to the Human-Bot Project</h1>
     <h2> Stock service <h2>
-    <h3>Lastest deliveries(10 days) -- Factory 1<h3>
+    <h3>remaining stock<h3>
     
     <table>
     <tr>

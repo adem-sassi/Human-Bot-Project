@@ -32,14 +32,14 @@ def fournisseur():
     <tr>
         <td>Delivery Id</td>
         <td>Supplier Name</td>
-        <td>Delivery Date/td>
+        <td>Delivery Date</td>
         <td>Quantity</td>
         <td>Employee</td>
         <td>Factory Name</td>
 
     </tr>
     <tr>
-         <td>1</td>
+        <td>1</td>
         <td>2</td>
         <td>3</td>
         <td>4 </td>
