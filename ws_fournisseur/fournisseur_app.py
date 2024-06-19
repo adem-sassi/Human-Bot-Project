@@ -6,12 +6,29 @@ app = Flask(__name__)
 @app.route("/")
 def fournisseur():
     return '''
-    <div>
+    <style>
+    table {
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse; 
+    border: 1px solid;
+    }
+
+    #container{
+    text-align: center;
+    width: 100%;
+    }
+
+    tr:hover {
+    background-color: #ddd;
+    }
+    </style>
+
+    <div  id="container">
     <h1>Welcome to the Human-Bot Project</h1>
     <h2> Supplier Service <h2>
-    
     <h3>delivery last 10 days<h3>
-     <table>
+    <table>
     <tr>
         <td>Delivery Id</td>
         <td>Supplier Name</td>
