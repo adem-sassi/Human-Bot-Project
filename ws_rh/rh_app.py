@@ -14,9 +14,18 @@ def rh():
     border-collapse: collapse; 
     border: 1px solid;
     }
+
+    #container{
+    text-align: center;
+    width: 100%;
+    }
+
+    tr:hover {
+    background-color: #ddd;
+    }
     </style>
 
-    <div style="text-align: center; ">
+    <div id="container">
     <h1>Welcome to the Human-Bot Project</h1>
     <h2> Human Ressouces service<h2>
     <h3> Factory 1<h3>
@@ -40,7 +49,7 @@ def rh():
 
     <h3> Factory 2<h3>
 
-<table >
+    <table >
     <tr>
         <td>FirstName</td>
         <td>LastName</td>
