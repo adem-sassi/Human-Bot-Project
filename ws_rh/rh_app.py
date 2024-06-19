@@ -6,7 +6,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://botdb_user:botdb_password@
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Define models
 class Factory(db.Model):
     __tablename__ = 'factories'
     factory_id = db.Column(db.Integer, primary_key=True)
