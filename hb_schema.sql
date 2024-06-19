@@ -36,7 +36,7 @@ CREATE TABLE robots (
     factory_id INTEGER REFERENCES factories(factory_id)
 );
 
-CREATE TABLE audit_robot (
+hisCREATE TABLE audit_robot (
     audit_id SERIAL PRIMARY KEY,
     robot_id INTEGER REFERENCES robots(robot_id),
     creation_date DATE NOT NULL DEFAULT CURRENT_DATE
