@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -30,7 +30,7 @@ def index():
     except Exception as e:
         app.logger.error(f"Error querying factories: {e}")
         return "An error occurred while fetching the data."
-    return render_template('rh.html')
+    return render_template('rh.html', factories=factories)
 
 if __name__ == "__main__":
     app.run(debug=True)

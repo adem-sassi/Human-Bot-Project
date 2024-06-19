@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
 
@@ -19,69 +19,13 @@ class Delivery(db.Model):
 
 @app.route("/")
 def show_deliveries():
-<<<<<<< HEAD
-  return render_template('fournisseur.html')
-=======
-    ten_days_ago = datetime.now() - timedelta(days=10)
-    
-    recent_deliveries = Delivery.query.filter(Delivery.delivery_date >= ten_days_ago).order_by(Delivery.delivery_date.desc()).all()
-    
-    html_content = '''
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Recent Deliveries</title>
-        <style>
-            table {
-                text-align: center;
-                width: 100%;
-                border-collapse: collapse; 
-                border: 1px solid;
-            }
-            tr:hover {
-                background-color: #ddd;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="container">
-            <h1>Welcome to the Human-Bot Project</h1>
-            <h2>Stock Service</h2>
-            <h3>Recent Deliveries</h3>
-            <table>
-                <tr>
-                    <th>Delivery ID</th>
-                    <th>Supplier ID</th>
-                    <th>Delivery Date</th>
-                    <th>Quantity</th>
-                    <th>Received By</th>
-                    <th>Factory ID</th>
-                </tr>
-    '''
+    # For demonstration purposes, let's simulate some deliveries
+    deliveries = [
+        {'delivery_id': 1, 'supplier_name': 'Supplier A', 'delivery_date': datetime.now().date(), 'quantity': 100, 'employee_name': 'John Doe', 'factory_name': 'Factory X'},
+        {'delivery_id': 2, 'supplier_name': 'Supplier B', 'delivery_date': datetime.now().date(), 'quantity': 150, 'employee_name': 'Jane Smith', 'factory_name': 'Factory Y'}
+    ]
 
-    for delivery in recent_deliveries:
-        html_content += f'''
-                <tr>
-                    <td>{delivery.delivery_id}</td>
-                    <td>{delivery.supplier_id}</td>
-                    <td>{delivery.delivery_date}</td>
-                    <td>{delivery.quantity}</td>
-                    <td>{delivery.received_by}</td>
-                    <td>{delivery.factory_id}</td>
-                </tr>
-        '''
-
-    html_content += '''
-            </table>
-        </div>
-    </body>
-    </html>
-    '''
-
-    return html_content
->>>>>>> 71d179af559b07a4a0b04be9de40a02ba9ec1a3e
+    return render_template('fournisseur.html', deliveries=deliveries)
 
 if __name__ == "__main__":
     app.run(debug=True)
