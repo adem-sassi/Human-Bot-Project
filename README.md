@@ -31,11 +31,12 @@ The primary goal is to create a unified digital system that accommodates the dis
 ### Duration and Team
 
 - **Timeframe**: 7 hours
-- **Team Composition**: Groups of 4 :
+- **Team Composition**: Groups of 5 :
     - Adem Sassi (Project Manager)
     - Mohamed Aziz Kabissa
     - Mohamed Madhzaoui
     - Ramla Argui
+    - Neo Hayat
 
 ### Data Management
 
