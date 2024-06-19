@@ -1,0 +1,17 @@
+# Virtual environment
+.venv/
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Editor/IDE specific files
+.vscode/
+.idea/
+
+# Dependency management files
+requirements.txt
+Pipfile.lock
+
+# Configuration files (adjust as necessary)
+config.py
